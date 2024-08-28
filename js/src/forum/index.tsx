@@ -36,11 +36,15 @@ app.initializers.add('foskym/flarum-better-user-directory', () => {
         params,
       };
 
-      if (isPodium) {
-        return <div className="User">{PodiumUserItem.component(attributes)}</div>;
-      }
+      const podiumStyle = app.forum.attribute('foskym-better-user-directory.podium_style');
 
-      return <div className="User">{OrderUserCard.component(attributes)}</div>;
+      if (podiumStyle) {
+        if (isPodium) {
+          return <div className="User">{PodiumUserItem.component(attributes)}</div>;
+        }
+
+        return <div className="User">{OrderUserCard.component(attributes)}</div>;
+      }
 
       return <div className="User">{useSmallCards ? SmallUserCard.component(attributes) : UserDirectoryUserCard.component(attributes)}</div>;
     });
@@ -70,8 +74,10 @@ app.initializers.add('foskym/flarum-better-user-directory', () => {
         return <div className="DiscussionList">{Placeholder.component({ text })}</div>;
       }
 
+      const podiumStyle = app.forum.attribute('foskym-better-user-directory.podium_style');
+
       let podiumUsers = state.users.slice(0, 3);
-      let remainingUsers = state.users.slice(3);
+      let remainingUsers = podiumStyle ? state.users.slice(3) : state.users;
       if (podiumUsers.length >= 2) {
         [podiumUsers[0], podiumUsers[1]] = [podiumUsers[1], podiumUsers[0]];
       }
@@ -84,15 +90,17 @@ app.initializers.add('foskym/flarum-better-user-directory', () => {
             (useSmallCards ? ' UserDirectoryList--small-cards' : '')
           }
         >
-          <ul className="UserDirectoryList-Podium-users">
-            {podiumUsers.map((user: any, index: number) => {
-              return (
-                <li key={user.id()} data-id={user.id()}>
-                  {UserDirectoryListItem.component({ user, params, useSmallCards, isPodium: true, position: index + 1 })}
-                </li>
-              );
-            })}
-          </ul>
+          {podiumStyle && (
+            <ul className="UserDirectoryList-Podium-users">
+              {podiumUsers.map((user: any, index: number) => {
+                return (
+                  <li key={user.id()} data-id={user.id()}>
+                    {UserDirectoryListItem.component({ user, params, useSmallCards, isPodium: true, position: index + 1 })}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
           <ul className="UserDirectoryList-users">
             {remainingUsers.map((user: any, index: number) => {
               return (

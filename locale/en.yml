@@ -3,5 +3,6 @@ foskym-better-user-directory:
     settings:
       hide_search: Hide search
       hide_filter_groups: Hide filter groups
+      podium_style: Podium style
 
   forum:

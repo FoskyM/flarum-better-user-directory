@@ -3,5 +3,6 @@ foskym-better-user-directory:
     settings:
       hide_search: 隐藏搜索
       hide_filter_groups: 隐藏用户组筛选
+      podium_style: 排行榜风格
 
   forum:
