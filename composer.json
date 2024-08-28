@@ -27,9 +27,9 @@
             "title": "Better User Directory",
             "category": "",
             "icon": {
-                "name": "",
-                "color": "",
-                "backgroundColor": ""
+                "name": "far fa-address-book",
+                "color": "#ffffff",
+                "backgroundColor": "#2191f3"
             }
         },
         "flarum-cli": {
