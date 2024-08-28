@@ -2,12 +2,17 @@
     "name": "foskym/flarum-better-user-directory",
     "description": "Better customization for User Directory",
     "keywords": [
-        "flarum"
+        "flarum",
+        "extension",
+        "user list",
+        "member list",
+        "user directory"
     ],
     "type": "flarum-extension",
     "license": "MIT",
     "require": {
-        "flarum/core": "^1.2.0"
+        "flarum/core": "^1.2.0",
+        "fof/user-directory": "*"
     },
     "authors": [
         {
