@@ -37,6 +37,11 @@ export default class PodiumUserCard extends UserCard {
       69
     );
 
+    const showAll = app.forum.attribute('foskym-better-user-directory.show_all_items_in_top_cards');
+    if (showAll) {
+      return superItems;
+    }
+
     for (const key in sortItem) {
       if (sortItem[key].includes(sort)) {
         if (superItems.has(key)) {

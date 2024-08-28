@@ -16,5 +16,15 @@ app.initializers.add('foskym/flarum-better-user-directory', () => {
       setting: 'foskym-better-user-directory.podium_style',
       label: app.translator.trans('foskym-better-user-directory.admin.settings.podium_style'),
       type: 'boolean',
+    })
+    .registerSetting({
+      setting: 'foskym-better-user-directory.show_all_items_in_top_cards',
+      label: app.translator.trans('foskym-better-user-directory.admin.settings.show_all_items_in_top_cards'),
+      type: 'boolean',
+    })
+    .registerSetting({
+      setting: 'foskym-better-user-directory.show_all_items_in_bottom_cards',
+      label: app.translator.trans('foskym-better-user-directory.admin.settings.show_all_items_in_bottom_cards'),
+      type: 'boolean',
     });
 });
