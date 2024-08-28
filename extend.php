@@ -21,4 +21,8 @@ return [
         ->js(__DIR__.'/js/dist/admin.js')
         ->css(__DIR__.'/less/admin.less'),
     new Extend\Locales(__DIR__.'/locale'),
+
+    (new Extend\Settings())
+        ->serializeToForum('foskym-better-user-directory.hide_search', 'foskym-better-user-directory.hide_search', 'boolval', false)
+        ->serializeToForum('foskym-better-user-directory.hide_filter_groups', 'foskym-better-user-directory.hide_filter_groups', 'boolval', false)
 ];

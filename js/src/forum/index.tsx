@@ -11,8 +11,12 @@ app.initializers.add('foskym/flarum-better-user-directory', () => {
   if ('fof-user-directory' in flarum.extensions) {
     const UserDirectoryPage = flarum.extensions['fof-user-directory']?.UserDirectoryPage as any;
     extend(UserDirectoryPage.prototype, 'viewItems', function (items) {
-      items.remove('search');
-      items.remove('filterGroups');
+      if (app.forum.attribute('foskym-better-user-directory.hide_search')) {
+        items.remove('search');
+      }
+      if (app.forum.attribute('foskym-better-user-directory.hide_filter_groups')) {
+        items.remove('filterGroups');
+      }
     });
 
     const components = flarum.extensions['fof-user-directory']?.components as any;
@@ -29,7 +33,7 @@ app.initializers.add('foskym/flarum-better-user-directory', () => {
         className: `UserCard--directory${useSmallCards ? ' UserCard--small' : ''}`,
         controlsButtonClassName: 'Button Button--icon Button--flat',
         position,
-        params
+        params,
       };
 
       if (isPodium) {

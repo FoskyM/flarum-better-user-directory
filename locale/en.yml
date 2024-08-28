@@ -1,4 +1,7 @@
 foskym-better-user-directory:
   admin:
+    settings:
+      hide_search: Hide search
+      hide_filter_groups: Hide filter groups
 
   forum:
