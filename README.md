@@ -4,6 +4,10 @@
 
 A [Flarum](http://flarum.org) extension. Better customization for User Directory
 
+![image](https://github.com/user-attachments/assets/6ff40cfe-3cd1-4cc4-a8a5-bb592241d4cf)
+![image](https://github.com/user-attachments/assets/68175d40-c170-4bc2-977f-33de1a918585)
+
+
 ## Installation
 
 Install with composer:
@@ -24,4 +28,4 @@ php flarum cache:clear
 
 - [Packagist](https://packagist.org/packages/foskym/flarum-better-user-directory)
 - [GitHub](https://github.com/foskym/flarum-better-user-directory)
-- [Discuss](https://discuss.flarum.org/d/PUT_DISCUSS_SLUG_HERE)
+- [Discuss](https://discuss.flarum.org/d/35379-better-user-directory)
