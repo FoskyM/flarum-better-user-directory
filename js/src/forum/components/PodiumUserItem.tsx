@@ -10,6 +10,7 @@ export default class PodiumUserItem extends Component {
   view() {
     const user = this.attrs.user;
     const position = this.attrs.position;
+    const params = this.attrs.params;
 
     let positionClass = '';
     let displayPosition = position;
@@ -31,6 +32,7 @@ export default class PodiumUserItem extends Component {
             className: 'UserCard--directory UserCard--podium',
             controlsButtonClassName: 'Button Button--icon Button--flat',
             position,
+            params
           })}
         </div>
 

@@ -22,13 +22,14 @@ app.initializers.add('foskym/flarum-better-user-directory', () => {
 
     const UserDirectoryListItem = flarum.extensions['fof-user-directory']?.UserDirectoryListItem as any;
     override(UserDirectoryListItem.prototype, 'view', function (original) {
-      const { user, useSmallCards, isPodium, position } = this.attrs;
+      const { user, useSmallCards, isPodium, position, params } = this.attrs;
 
       const attributes = {
         user,
         className: `UserCard--directory${useSmallCards ? ' UserCard--small' : ''}`,
         controlsButtonClassName: 'Button Button--icon Button--flat',
-        position
+        position,
+        params
       };
 
       if (isPodium) {

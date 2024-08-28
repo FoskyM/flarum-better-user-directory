@@ -12,6 +12,7 @@ import Link from 'flarum/common/components/Link';
 import AvatarEditor from 'flarum/forum/components/AvatarEditor';
 import listItems from 'flarum/common/helpers/listItems';
 import classList from 'flarum/common/utils/classList';
+import { sortItem } from '../utils/sortItem';
 
 export default class OrderUserCard extends UserCard {
   view() {
@@ -37,7 +38,7 @@ export default class OrderUserCard extends UserCard {
                 {controls}
               </Dropdown>
             )}
-            
+
             <div className="UserCard--order-position">{position}</div>
 
             <div className="UserCard-profile">
@@ -65,13 +66,42 @@ export default class OrderUserCard extends UserCard {
   }
 
   infoItems() {
-    const superItems = super.infoItems();
-    console.log(superItems);
     const items = new ItemList();
     const user = this.attrs.user;
+    const params = this.attrs.params;
+    const sort = params.sort || '';
 
-    items.add('joined', app.translator.trans('core.forum.user.joined_date_text', { ago: humanTime(user.joinTime()) }));
+    const superItems = super.infoItems();
+    superItems.add(
+      'discussion-count',
+      <div className="userStat">
+        {icon('fas fa-comment')}
+        {app.translator.trans('fof-user-directory.forum.page.usercard.discussion-count', {
+          count: user.discussionCount(),
+        })}
+      </div>,
+      70
+    );
 
-    return items;
+    superItems.add(
+      'comment-count',
+      <div className="userStat">
+        {icon('fas fa-comments')}
+        {app.translator.trans('fof-user-directory.forum.page.usercard.post-count', {
+          count: user.commentCount(),
+        })}
+      </div>,
+      69
+    );
+
+    for (const key in sortItem) {
+      if (sortItem[key].includes(sort)) {
+        if (superItems.has(key)) {
+          items.add(key, superItems.get(key));
+        }
+      }
+    }
+
+    return superItems;
   }
 }
