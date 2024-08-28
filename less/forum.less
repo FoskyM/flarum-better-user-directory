@@ -207,11 +207,14 @@
   &-position {
     position: relative;
     float: left;
-    font-size: 64px;
+    font-size: 48px;
     margin-left: 16px;
   }
 
   .UserCard-avatar {
+    .Avatar {
+      --size: 64px;
+    }
     @media @tablet-up {
       margin-left: -40px;
       margin-right: 24px;
@@ -223,7 +226,6 @@
       @media @phone {
         display: block;
         margin: 0 auto 20px;
-        width: 72px;
       }
     }
   }
