@@ -2,7 +2,8 @@ import app from 'flarum/admin/app';
 import LinkButton from 'flarum/common/components/LinkButton';
 
 app.initializers.add('foskym/flarum-better-user-directory', () => {
-  app.extensionData.for('foskym-better-user-directory')
+  app.extensionData
+    .for('foskym-better-user-directory')
     .registerSetting(function () {
       return (
         <div className="Form-group">
@@ -43,4 +44,20 @@ app.initializers.add('foskym/flarum-better-user-directory', () => {
       label: app.translator.trans('foskym-better-user-directory.admin.settings.show_all_items_in_bottom_cards'),
       type: 'boolean',
     });
+
+  app.extensionData.for('fof-user-directory').registerSetting(function () {
+    return (
+      <div className="Form-group">
+        <label>
+          <LinkButton
+            href={app.route('extension', {
+              id: 'foskym-better-user-directory',
+            })}
+          >
+            {app.translator.trans('foskym-better-user-directory.admin.go_to_this_extension')}
+          </LinkButton>
+        </label>
+      </div>
+    );
+  });
 });
