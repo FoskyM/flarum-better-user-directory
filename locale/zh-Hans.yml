@@ -7,4 +7,6 @@ foskym-better-user-directory:
       show_all_items_in_top_cards: 在顶部卡片中显示所有项目（或仅显示与排序相关的一个项目）
       show_all_items_in_bottom_cards: 在底部卡片中显示所有项目（或仅显示与排序相关的一个项目）
 
+    go_to_user_directory_extension: 在 User Directory 中进行更多配置
+
   forum:
