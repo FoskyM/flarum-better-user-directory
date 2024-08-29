@@ -16,53 +16,61 @@ import { sortItem } from '../utils/sortItem';
 
 export default class OrderUserCard extends UserCard {
   view() {
+    const originalView = super.view.bind(this);
+    const tree = originalView();
+
     const user = this.attrs.user;
     const controls = UserControls.controls(user, this).toArray();
     const color = user.color();
     const badges = user.badges().toArray();
     const position = this.attrs.position;
 
-    return (
-      <div className={classList('UserCard UserCard--order', this.attrs.className)} style={color && { '--usercard-bg': color }}>
-        <div className="darkenBackground">
-          <div className="container">
-            {!!controls.length && (
-              <Dropdown
-                className="UserCard-controls App-primaryControl"
-                menuClassName="Dropdown-menu--right"
-                buttonClassName={this.attrs.controlsButtonClassName}
-                label={app.translator.trans('core.forum.user_controls.button')}
-                accessibleToggleLabel={app.translator.trans('core.forum.user_controls.toggle_dropdown_accessible_label')}
-                icon="fas fa-ellipsis-v"
-              >
-                {controls}
-              </Dropdown>
-            )}
+    tree.attrs.className = classList('UserCard UserCard--order', this.attrs.className, tree.attrs.className);
+    if (color) {
+      tree.attrs.style['--usercard-bg'] = color;
+    }
 
-            <div className="UserCard--order-position">{position}</div>
+    tree.children[0] = (
+      <div className="darkenBackground">
+        <div className="container">
+          {!!controls.length && (
+            <Dropdown
+              className="UserCard-controls App-primaryControl"
+              menuClassName="Dropdown-menu--right"
+              buttonClassName={this.attrs.controlsButtonClassName}
+              label={app.translator.trans('core.forum.user_controls.button')}
+              accessibleToggleLabel={app.translator.trans('core.forum.user_controls.toggle_dropdown_accessible_label')}
+              icon="fas fa-ellipsis-v"
+            >
+              {controls}
+            </Dropdown>
+          )}
 
-            <div className="UserCard-profile">
-              <h1 className="UserCard-identity">
-                {this.attrs.editable ? (
-                  <>
-                    <AvatarEditor user={user} className="UserCard-avatar" /> {username(user)}
-                  </>
-                ) : (
-                  <Link href={app.route.user(user)}>
-                    <div className="UserCard-avatar">{avatar(user, { loading: 'eager' })}</div>
-                    {username(user)}
-                  </Link>
-                )}
-              </h1>
+          <div className="UserCard--order-position">{position}</div>
 
-              {!!badges.length && <ul className="UserCard-badges badges">{listItems(badges)}</ul>}
+          <div className="UserCard-profile">
+            <h1 className="UserCard-identity">
+              {this.attrs.editable ? (
+                <>
+                  <AvatarEditor user={user} className="UserCard-avatar" /> {username(user)}
+                </>
+              ) : (
+                <Link href={app.route.user(user)}>
+                  <div className="UserCard-avatar">{avatar(user, { loading: 'eager' })}</div>
+                  {username(user)}
+                </Link>
+              )}
+            </h1>
 
-              <ul className="UserCard-info">{listItems(this.infoItems().toArray())}</ul>
-            </div>
+            {!!badges.length && <ul className="UserCard-badges badges">{listItems(badges)}</ul>}
+
+            <ul className="UserCard-info">{listItems(this.infoItems().toArray())}</ul>
           </div>
         </div>
       </div>
     );
+
+    return tree;
   }
 
   infoItems() {
